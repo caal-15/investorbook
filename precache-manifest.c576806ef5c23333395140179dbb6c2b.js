@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ace2d6ad2cc09f42184fd0e6be010857",
+    "revision": "64214503b4c61d615001d16a048f6f81",
     "url": "/investorbook/index.html"
   },
   {
-    "revision": "d4cd4b0f2dede143f941",
+    "revision": "04992fbca6748300eec8",
     "url": "/investorbook/static/css/2.bb502dd6.chunk.css"
   },
   {
-    "revision": "80d29e00496d3685524f",
-    "url": "/investorbook/static/css/main.ba985d99.chunk.css"
+    "revision": "ddf8ad10876b74b33824",
+    "url": "/investorbook/static/css/main.6a691d9b.chunk.css"
   },
   {
-    "revision": "d4cd4b0f2dede143f941",
-    "url": "/investorbook/static/js/2.52b0e625.chunk.js"
+    "revision": "04992fbca6748300eec8",
+    "url": "/investorbook/static/js/2.632356a4.chunk.js"
   },
   {
     "revision": "27e28cccc1ec422e68316fd29acd149a",
-    "url": "/investorbook/static/js/2.52b0e625.chunk.js.LICENSE.txt"
+    "url": "/investorbook/static/js/2.632356a4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "80d29e00496d3685524f",
-    "url": "/investorbook/static/js/main.fd28b21d.chunk.js"
+    "revision": "ddf8ad10876b74b33824",
+    "url": "/investorbook/static/js/main.e678a882.chunk.js"
   },
   {
     "revision": "1099105450047c437d6e",
