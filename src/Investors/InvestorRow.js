@@ -4,9 +4,9 @@ import TableCell from "@material-ui/core/TableCell";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import { Link } from "react-router-dom";
 
 import styles from "./styles.module.sass";
-import { Link } from "react-router-dom";
 
 const InvestorRow = ({ investor }) => {
   const investments = investor.investments
