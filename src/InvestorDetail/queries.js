@@ -7,6 +7,7 @@ export const GET_INVESTOR_DETAIL = gql`
       name
       photo_large
       investments {
+        id
         amount
         company {
           id

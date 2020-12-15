@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -12,7 +12,14 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+import AddInvestmentModal from "./AddInvestmentModal";
+
 const InvestorInvestments = ({ investments }) => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const onCloseAddModal = () => setIsAddModalOpen(false);
+  const onOpenAddModal = () => setIsAddModalOpen(true);
+
   return (
     <>
       <Grid container spacing={2} alignItems="center">
@@ -22,7 +29,9 @@ const InvestorInvestments = ({ investments }) => {
           </Typography>
         </Grid>
         <Grid item>
-          <Button color="primary">+ Add Investment</Button>
+          <Button color="primary" onClick={onOpenAddModal}>
+            + Add Investment
+          </Button>
         </Grid>
       </Grid>
       <Box m={2} />
@@ -53,6 +62,7 @@ const InvestorInvestments = ({ investments }) => {
           ))}
         </TableBody>
       </Table>
+      <AddInvestmentModal isOpen={isAddModalOpen} onClose={onCloseAddModal} />
     </>
   );
 };
