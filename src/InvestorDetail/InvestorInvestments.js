@@ -14,7 +14,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import AddInvestmentModal from "./AddInvestmentModal";
 
-const InvestorInvestments = ({ investments }) => {
+const InvestorInvestments = ({ investor, investments }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const onCloseAddModal = () => setIsAddModalOpen(false);
@@ -62,7 +62,11 @@ const InvestorInvestments = ({ investments }) => {
           ))}
         </TableBody>
       </Table>
-      <AddInvestmentModal isOpen={isAddModalOpen} onClose={onCloseAddModal} />
+      <AddInvestmentModal
+        investor={investor}
+        isOpen={isAddModalOpen}
+        onClose={onCloseAddModal}
+      />
     </>
   );
 };

@@ -81,7 +81,10 @@ const InvestorDetail = () => {
           <Grid md={2} item />
           <Grid item md={10}>
             <Box m={4} />
-            <InvestorInvestments investments={data.investor.investments} />
+            <InvestorInvestments
+              investor={data.investor}
+              investments={data.investor.investments}
+            />
           </Grid>
         </>
       ) : null}
