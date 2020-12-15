@@ -8,6 +8,7 @@ import TableBody from "@material-ui/core/TableBody";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Button from "@material-ui/core/Button";
 import { useQuery } from "@apollo/client";
 
 import { GET_INVESTORS } from "./queries";
@@ -24,9 +25,18 @@ const Investors = () => {
 
   return (
     <>
-      <Typography align="left" variant="h3" component="h2" gutterBottom>
-        Investors
-      </Typography>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item>
+          <Typography align="left" variant="h3" component="h2">
+            Investors
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Button color="primary" variant="outlined">
+            Add Investor
+          </Button>
+        </Grid>
+      </Grid>
       {loading ? <CircularProgress /> : null}
       {!loading && !error && data?.investor?.length ? (
         <>
@@ -51,6 +61,7 @@ const Investors = () => {
                 setPageSize={setPageSize}
                 page={page}
                 setPage={setPage}
+                total={data.investor_aggregate.aggregate.count}
               />
             </Grid>
           </Grid>

@@ -17,7 +17,10 @@ import styles from "./styles.module.sass";
 
 const AddInvestmentModal = ({ isOpen, onClose, investor }) => {
   const { error, data, loading } = useQuery(GET_ALL_COMPANIES);
-  const [addInvestment, { loading: loadingAdd }] = useMutation(ADD_INVESTMENT);
+  const [
+    addInvestment,
+    { loading: loadingAdd, error: errorAdding },
+  ] = useMutation(ADD_INVESTMENT);
   const client = useApolloClient();
   const [selectedCompany, setSelectedCompany] = useState("");
   const [amount, setAmount] = useState("");
@@ -44,13 +47,16 @@ const AddInvestmentModal = ({ isOpen, onClose, investor }) => {
       investor_id: Number(investor.id),
     };
 
-    addInvestment({ variables: { investment }, update: updateCache });
+    addInvestment({ variables: { investment }, update: updateCache }).catch(
+      console.log
+    );
   };
 
+  // TODO: Handle Errors More Gracefully
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       {loading ? <CircularProgress /> : null}
-      {!loading && !error && data.company ? (
+      {!loading && !error && !errorAdding && data.company ? (
         <>
           <Typography align="left" variant="h6" component="h4">
             Add Investment
@@ -100,7 +106,7 @@ const AddInvestmentModal = ({ isOpen, onClose, investor }) => {
           </Grid>
         </>
       ) : null}
-      {error ? (
+      {error || errorAdding ? (
         <Typography variant="h4" color="error">
           Oops, Something went wrong, try reloading.
         </Typography>

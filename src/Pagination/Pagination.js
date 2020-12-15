@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForwardIos";
 
-const Pagination = ({ pageSize, setPageSize, page, setPage }) => {
+const Pagination = ({ pageSize, setPageSize, page, setPage, total }) => {
   const firstItem = page * pageSize + 1;
   const lastItem = firstItem + pageSize - 1;
   return (
@@ -33,7 +33,7 @@ const Pagination = ({ pageSize, setPageSize, page, setPage }) => {
         <Box mx={2} />
       </Grid>
       <Grid item>
-        {firstItem} - {lastItem}
+        {firstItem} - {lastItem} of {total}
       </Grid>
       <Grid item></Grid>
       <Grid item>
@@ -45,7 +45,10 @@ const Pagination = ({ pageSize, setPageSize, page, setPage }) => {
         </IconButton>
       </Grid>
       <Grid item>
-        <IconButton onClick={() => setPage(page + 1)}>
+        <IconButton
+          disabled={lastItem >= total}
+          onClick={() => setPage(page + 1)}
+        >
           <ArrowForwardIcon />
         </IconButton>
       </Grid>
