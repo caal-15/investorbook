@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -12,25 +12,18 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import AddInvestmentModal from "./AddInvestmentModal";
-
-const InvestorInvestments = ({ investor, investments }) => {
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-  const onCloseAddModal = () => setIsAddModalOpen(false);
-  const onOpenAddModal = () => setIsAddModalOpen(true);
-
+const CompanyInvestments = ({ investments }) => {
   return (
     <>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <Typography align="left" variant="body1" component="h3">
-            Investments
+            Investors
           </Typography>
         </Grid>
         <Grid item>
-          <Button color="primary" onClick={onOpenAddModal}>
-            + Add Investment
+          <Button color="primary" disabled>
+            + Add Investors
           </Button>
         </Grid>
       </Grid>
@@ -46,7 +39,7 @@ const InvestorInvestments = ({ investor, investments }) => {
         <TableBody>
           {investments.map((investment) => (
             <TableRow key={investment.id}>
-              <TableCell>{investment.company.name}</TableCell>
+              <TableCell>{investment.investor.name}</TableCell>
               <TableCell>
                 ${Intl.NumberFormat().format(investment.amount)}
               </TableCell>
@@ -62,13 +55,8 @@ const InvestorInvestments = ({ investor, investments }) => {
           ))}
         </TableBody>
       </Table>
-      <AddInvestmentModal
-        investor={investor}
-        isOpen={isAddModalOpen}
-        onClose={onCloseAddModal}
-      />
     </>
   );
 };
 
-export default InvestorInvestments;
+export default CompanyInvestments;

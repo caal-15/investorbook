@@ -31,7 +31,7 @@ const Companies = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <Button color="primary" variant="outlined">
+          <Button disabled color="primary" variant="outlined">
             Add Company
           </Button>
         </Grid>

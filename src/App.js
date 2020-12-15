@@ -12,6 +12,7 @@ import Layout from "./Layout";
 import Investors from "./Investors";
 import InvestorDetail from "./InvestorDetail";
 import Companies from "./Companies";
+import CompanyDetail from "./CompanyDetail";
 
 const theme = createMuiTheme({
   palette: {
@@ -47,6 +48,11 @@ function App() {
               <Route exact path="/companies">
                 <Layout showNav>
                   <Companies />
+                </Layout>
+              </Route>
+              <Route exact path="/companies/:id">
+                <Layout showNav>
+                  <CompanyDetail />
                 </Layout>
               </Route>
             </Switch>

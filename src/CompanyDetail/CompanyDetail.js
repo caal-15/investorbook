@@ -6,34 +6,26 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBackIos";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { useHistory, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import styles from "./styles.module.sass";
+import { GET_COMPANY_DETAIL } from "./queries";
+import CompanyInvestments from "./CompanyInvestments";
 
-import { GET_INVESTOR_DETAIL } from "./queries";
-import InvestorInvestments from "./InvestorInvestments";
-
-const InvestorDetail = () => {
+const CompanyDetail = () => {
   const { push } = useHistory();
   const { id } = useParams();
 
-  const { loading, error, data } = useQuery(GET_INVESTOR_DETAIL, {
+  const { loading, error, data } = useQuery(GET_COMPANY_DETAIL, {
     variables: { id },
   });
-
-  const totalAmountInvested = data?.investor?.investments?.reduce(
-    (acc, investment) => acc + investment.amount,
-    0
-  );
 
   return (
     <Grid alignItems="center" container spacing={2}>
       <Grid md={1} item>
-        <IconButton onClick={() => push("/investors")}>
+        <IconButton onClick={() => push("/companies")}>
           <ArrowBackIcon />
         </IconButton>
       </Grid>
@@ -42,15 +34,9 @@ const InvestorDetail = () => {
           <CircularProgress />
         </Grid>
       ) : null}
-      {!loading && !error && data?.investor ? (
+      {!loading && !error && data?.company ? (
         <>
-          <Grid md={1} item>
-            <Avatar
-              className={styles.investorAvatar}
-              src={data.investor.photo_large}
-            />
-          </Grid>
-          <Grid md={10} item>
+          <Grid md={11} item>
             <Grid container justify="space-between">
               <Grid item>
                 <Typography
@@ -59,11 +45,7 @@ const InvestorDetail = () => {
                   component="h2"
                   gutterBottom
                 >
-                  {data.investor.name}
-                </Typography>
-                <Typography variant="body1">
-                  Total Amount Invested: $
-                  {Intl.NumberFormat().format(totalAmountInvested)}
+                  {data.company.name}
                 </Typography>
               </Grid>
               <Grid item>
@@ -75,20 +57,17 @@ const InvestorDetail = () => {
                   </Grid>
                   <Grid item>
                     <Button disabled startIcon={<DeleteIcon />}>
-                      Remove Investor
+                      Remove Company
                     </Button>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid md={2} item />
-          <Grid item md={10}>
+          <Grid md={1} item />
+          <Grid item md={11}>
             <Box m={4} />
-            <InvestorInvestments
-              investor={data.investor}
-              investments={data.investor.investments}
-            />
+            <CompanyInvestments investments={data.company.investments} />
           </Grid>
         </>
       ) : null}
@@ -101,4 +80,4 @@ const InvestorDetail = () => {
   );
 };
 
-export default InvestorDetail;
+export default CompanyDetail;
