@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <BrowserRouter>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Switch>
               <Route exact path="/">
                 <Redirect to="/investors" />
